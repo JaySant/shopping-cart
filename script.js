@@ -28,7 +28,7 @@ function createProductItemElement({ sku, name, image }) {
 
 async function createItemApi() {
  const endpoint = await fetchProducts('computador')
- console.log(endpoint.map((item) => console.log(item)))
+ console.log(endpoint.results)
     
  
 }
@@ -52,3 +52,5 @@ function createCartItemElement({ sku, name, salePrice }) {
 window.onload = () => { 
   createItemApi()
 };
+
+// test

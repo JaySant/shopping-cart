@@ -15,3 +15,5 @@ if (typeof module !== 'undefined') {
     fetchProducts,
   };
 }
+
+// test

@@ -1,3 +1,5 @@
+// const { fetchProducts } = require("./helpers/fetchProducts");
+
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -24,6 +26,13 @@ function createProductItemElement({ sku, name, image }) {
   return section;
 }
 
+async function createItemApi() {
+ const endpoint = await fetchProducts('computador')
+ console.log(endpoint.map((item) => console.log(item)))
+    
+ 
+}
+
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
@@ -40,4 +49,6 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-window.onload = () => { };
+window.onload = () => { 
+  createItemApi()
+};

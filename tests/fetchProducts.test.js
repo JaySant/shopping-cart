@@ -17,13 +17,17 @@ describe('1 - Teste a função fecthProducts', () => {
   async () => {
     await fetchProducts('computador');
     expect(fetch).toBeCalledWith('https://api.mercadolibre.com/sites/MLB/search?q=computador')
-
-  test('Verifica se a função fetchProducts com o argumento "computador" é uma estrutura de dados igual ao objeto computadorSearch', 
-  async () => {
-    expect(await fetchProducts('computador')).toEqual(computadorSearch);
   })
 
+  test('Verifica se a função fetchProducts com o argumento "computador" retorna um objeto igual computador search', 
+  async () => {
+    const func = await fetchProducts('computador')
+    expect(func).toEqual(computadorSearch)
+  })
+
+  test('Verifica se a função quando não recebe nenhum parametro retorna um erro', async () => {
+    expect(await fetchProducts()).toEqual(new Error('You must provide an url'))
   })
 })
 
-// test
+

@@ -20,9 +20,28 @@ function createProductItemElement({ sku, name, image }) {
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
   return section;
 }
+
+function createCartItemElement({ sku, name, salePrice }) {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+ //  li.addEventListener('click', cartItemClickListener);
+  return li;
+}
+
+const addCardItem = async (event) => {
+  const id = event.target.parentNode.firstChild.innerText;
+  const endpointId = await fetchItem(id);
+  const infoCard = {
+    sku: endpointId.id,
+    name: endpointId.title,
+    salePrice: endpointId.price,
+  };
+  const cart = document.querySelector('.cart__items').appendChild(createCartItemElement(infoCard));
+  return cart;
+};
 
 async function createItemApi() {
   const endpoint = await fetchProducts('computador');
@@ -38,6 +57,10 @@ async function createItemApi() {
       const create = document.querySelector('.items').appendChild(createProductItemElement(item));
       return create;
     });
+    const buttons = document.querySelectorAll('.item__add');
+    buttons.forEach((button) => {
+    button.addEventListener('click', addCardItem);
+  });
 }
 
 // function getSkuFromProductItem(item) {
@@ -48,14 +71,7 @@ async function createItemApi() {
 //   // coloque seu código aqui
 // }
 
-// function createCartItemElement({ sku, name, salePrice }) {
-//   const li = document.createElement('li');
-//   li.className = 'cart__item';
-//   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-//   li.addEventListener('click', cartItemClickListener);
-//   return li;
-// }
-
-window.onload = () => { 
+  window.onload = () => {
   createItemApi();
+  addCardItem();
 };

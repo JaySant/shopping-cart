@@ -82,6 +82,7 @@ function btnemptyCart() {
 }
 
 function getSaveCart() {
+  ol.addEventListener('click', cartItemClickListener);
   ol.innerHTML = getSavedCartItems();
 }
 

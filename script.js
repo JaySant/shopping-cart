@@ -45,6 +45,7 @@ const addCardItem = async (event) => {
     salePrice: endpointId.price,
   };
   const cart = document.querySelector('.cart__items').appendChild(createCartItemElement(infoCard));
+  cart.appendChild(saveCartItems());
   return cart;
 };
 
@@ -73,6 +74,7 @@ function btnemptyCart() {
   btnCart.addEventListener('click', () => {
   const itemAdd = document.querySelector('.cart__items');
   itemAdd.innerText = '';
+  saveCartItems();
   });
 }
 
@@ -84,4 +86,5 @@ window.onload = () => {
   createItemApi();
   addCardItem();
   btnemptyCart();
+  getSavedCartItems();
 };

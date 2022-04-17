@@ -68,6 +68,14 @@ async function createItemApi() {
   });
 }
 
+function btnemptyCart() {
+  const btnCart = document.querySelector('.empty-cart');
+  btnCart.addEventListener('click', () => {
+  const itemAdd = document.querySelector('.cart__items');
+  itemAdd.innerText = '';
+  });
+}
+
 // function getSkuFromProductItem(item) {
 //   return item.querySelector('span.item__sku').innerText;
 // }
@@ -75,4 +83,5 @@ async function createItemApi() {
 window.onload = () => {
   createItemApi();
   addCardItem();
+  btnemptyCart();
 };

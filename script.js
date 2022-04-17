@@ -45,7 +45,8 @@ const addCardItem = async (event) => {
     salePrice: endpointId.price,
   };
   const cart = document.querySelector('.cart__items').appendChild(createCartItemElement(infoCard));
-  cart.appendChild(saveCartItems());
+  const ol = document.querySelector('.cart__items')
+  cart.appendChild(saveCartItems(ol.innerHTML));
   return cart;
 };
 
@@ -74,8 +75,13 @@ function btnemptyCart() {
   btnCart.addEventListener('click', () => {
   const itemAdd = document.querySelector('.cart__items');
   itemAdd.innerText = '';
-  saveCartItems();
+  saveCartItems(itemAdd.innerHTML);
   });
+}
+
+function getSaveCart() {
+  const cart = document.querySelector('.cart__items')
+  cart.innerHTML = getSavedCartItems()
 }
 
 // function getSkuFromProductItem(item) {
@@ -86,5 +92,5 @@ window.onload = () => {
   createItemApi();
   addCardItem();
   btnemptyCart();
-  getSavedCartItems();
+  getSaveCart()
 };
